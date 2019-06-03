@@ -4,14 +4,12 @@ var path = require("path");
 
 // set port
 var PORT = process.env.PORT || 8080;
-
 var app = express();
 
-
-// Sets up the Express app to handle data parsing
+// data parsing handling
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+app.use(express.static("app/public"));
 
 // pull in routes
 require("./app/routing/apiRoutes.js")(app);
