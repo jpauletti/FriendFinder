@@ -1,6 +1,5 @@
 // dependencies
 var express = require("express");
-var path = require("path");
 
 // set port
 var PORT = process.env.PORT || 8080;

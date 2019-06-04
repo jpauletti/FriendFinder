@@ -27,11 +27,12 @@ $("#submitSurvey").on("click", function (event) {
         scores: scores
     }
 
-    console.log(newFriend);
+    $.post("/api/friends", newFriend, function (data) {
+        console.log(data);
 
-    // $.post("/api/friends", newFriend, function (data) {
-    //     // open modal
-    //         // show best match - name and picture
+        // open modal
+            // show best match - name and picture
 
-    // });
+    });
+
 })

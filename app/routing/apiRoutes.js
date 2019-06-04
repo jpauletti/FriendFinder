@@ -14,8 +14,9 @@ module.exports = function (app) {
         // incoming survey results - save user's answers & info
         var newFriend = req.body;
         friends.push(newFriend);
+        res.json(true); // why is this necessary?
 
         // compatibility logic here
-        
+
     });
 }
