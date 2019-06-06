@@ -4,10 +4,6 @@ $("#submitSurvey").on("click", function (event) {
     var name = $("#your-name").val().trim();
     var photoLink = $("#photo-link").val().trim();
 
-    $('input[name=radioName]:checked', '#myForm').val()
-    $("#q1 input[name=questionOne]:checked").val();
-
-
     var scores = [
         $("#q1 input[name=questionOne]:checked").val(),
         $("#q2 input[name=questionTwo]:checked").val(),
@@ -21,18 +17,26 @@ $("#submitSurvey").on("click", function (event) {
         $("#q10 input[name=questionTen]:checked").val()
     ];
 
-    var newFriend = {
-        name: name,
-        photo: photoLink,
-        scores: scores
+    var empty = false;
+    for (var i = 0; i < scores.length; i++) {
+        if (scores[i] === undefined) {
+            empty = true;
+        }
     }
 
-    $.post("/api/friends", newFriend, function (data) {
-        console.log(data);
+    if (name !== undefined && photoLink !== undefined && !empty) {
+        var newFriend = {
+            name: name,
+            photo: photoLink,
+            scores: scores
+        }
 
-        // open modal
+        $.post("/api/friends", newFriend, function (data) {
+            console.log(data);
+
+            // open modal
             // show best match - name and picture
 
-    });
-
+        });
+    }
 })
