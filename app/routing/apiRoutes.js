@@ -8,53 +8,40 @@ module.exports = function (app) {
     app.post("/api/friends", function (req, res) {
         // incoming survey results - save user's answers & info
         var newFriend = req.body;
+        // add them to our data - friends array
         friends.push(newFriend);
-
-        // compatibility logic here
-        // Convert each user's results into a simple array of numbers (ex: `[5, 1, 4, 4, 5, 1, 2, 5, 4, 1]`).
-        // With that done, compare the difference between current user's scores against those from other users, question by question. Add up the differences to calculate the `totalDifference`.
-        //    * Example:
-        //    * User 1: `[5, 1, 4, 4, 5, 1, 2, 5, 4, 1]`
-        //    * User 2: `[3, 2, 6, 4, 5, 1, 2, 5, 4, 1]`
-        //    * Total Difference: **2 + 1 + 2 =** **_5_**
-        // Remember to use the absolute value of the differences. Put another way: no negative solutions! Your app should calculate both `5-3` and `3-5` as `2`, and so on.
-        // The closest match will be the user with the least amount of difference.
 
         var totalDifference = 0;
         var friendDifference = [];
         for (i = 0; i < (friends.length - 1); i++) {
             // loop through each friend in list
-            // reset totalDifference
+            // reset totalDifference each time
             totalDifference = 0;
             for (var j = 0; j < friends[i].scores.length; j++) {
-                // loop through each score for newFriend / friends[i]
+                // loop through each score to compare newFriend & friends[i]
                 var newNumber = Math.abs(parseInt(newFriend.scores[j]) - parseInt(friends[i].scores[j]));
-                console.log("newFriend score: " + newFriend.scores[j]);
-                console.log("friend " + i + " score: " + friends[i].scores[j]);
+                // console.log("newFriend score: " + newFriend.scores[j]);
+                // console.log("friend " + i + " score: " + friends[i].scores[j]);
 
-                console.log(newNumber);
+                // console.log(newNumber);
 
                 // add difference to totalDifference
                 totalDifference += newNumber;
             }
-            // push that friend's totalDifference to an array to save it
+            // push that friend's final totalDifference to an array to save it
             friendDifference.push(totalDifference);
         }
 
-
-        console.log(friendDifference);
-
-        // loop through friendDifference to find the lowest number
+        // find the lowest number in friendDifference array
         var lowestNumber = Math.min.apply(null, friendDifference);
+        // get index of that closest number (just use first one if there is more than one match)
         var closestIndex = friendDifference.indexOf(lowestNumber);
-
+        // set closest match
         var closestMatch = friends[closestIndex];
         console.log(closestMatch);
-        // for (var i = 0; i < (friendDifference.length); i++) {
-        //     Math.min.apply(null, friendDifference)
-        // }
 
-        res.json(true); // why is this necessary?
+        // send back the closestMatch and its info
+        res.json(closestMatch);
 
     });
 }

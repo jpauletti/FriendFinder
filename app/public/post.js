@@ -31,8 +31,15 @@ $("#submitSurvey").on("click", function (event) {
             scores: scores
         }
 
+        // push newFriend data
         $.post("/api/friends", newFriend, function (data) {
+            // receive the closestMatch and its info
             console.log(data);
+
+            var matchName = data.name;
+            var matchPhoto = data.photo;
+
+            
 
             // open modal
             // show best match - name and picture
