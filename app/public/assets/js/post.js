@@ -1,4 +1,4 @@
-// bootstrap validation
+// bootstrap validation & post request
 (function () {
     'use strict';
     window.addEventListener('load', function () {
@@ -46,10 +46,17 @@
                             var matchName = data.name;
                             var matchPhoto = data.photo;
 
+                            // display match name and image (although currently hidden)
+                            $("#match-name").text(matchName);
+                            $("#match-image").attr("src", matchPhoto);
+                            // if user didn't use a real image
 
+                            $("#match-image").on("error", function () {
+                                $(this).attr("src", "./assets/images/default-user-image.png");
+                            })
 
-                            // open modal
-                            // show best match - name and picture
+                            // open modal for best match
+                            modal.css("display", "block");
 
                         });
                     // }
@@ -59,3 +66,28 @@
         });
     }, false);
 })();
+
+
+
+// modal open/close
+// Get the modal
+var modal = $("#myModal");
+
+// Get the button that opens the modal
+var btn = $('button[type="submit"');
+
+// Get the <span> element that closes the modal
+var span = $(".close");
+
+// When the user clicks on <span> (x), close the modal
+span.on("click", function () {
+    modal.css("display", "none");
+})
+
+// When the user clicks anywhere outside of the modal, close it
+$(window).on("click", function (event) {
+    var modal = $("#myModal");
+    if (event.target == modal) {
+        modal.css("display", "none");
+    }
+})
