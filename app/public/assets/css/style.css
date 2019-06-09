@@ -1,3 +1,16 @@
+body {
+    background: #D4E1EC;
+}
+
+i.fa-user-friends {
+    margin-right: 8px;
+}
+
+i.fa-angle-right {
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
 /* modal background */
 .modal {
 display: none;

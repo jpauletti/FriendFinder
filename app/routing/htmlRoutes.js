@@ -5,7 +5,7 @@ module.exports = function (app) {
         res.sendFile(path.join(__dirname, "../public/survey.html"));
     });
 
-    app.get("/:other", function (req, res) {
+    app.get("/:other?", function (req, res) {
         var input = req.params.action;
         res.sendFile(path.join(__dirname, "../public/home.html"));
     })
