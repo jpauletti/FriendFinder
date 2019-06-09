@@ -49,14 +49,14 @@
                             // display match name and image (although currently hidden)
                             $("#match-name").text(matchName);
                             $("#match-image").attr("src", matchPhoto);
-                            // if user didn't use a real image
 
+                            // if user didn't use a real image
                             $("#match-image").on("error", function () {
                                 $(this).attr("src", "./assets/images/default-user-image.png");
                             })
 
                             // open modal for best match
-                            modal.css("display", "block");
+                            $("#myModal").css("display", "block");
 
                         });
                     // }
@@ -70,24 +70,20 @@
 
 
 // modal open/close
-// Get the modal
-var modal = $("#myModal");
-
-// Get the button that opens the modal
-var btn = $('button[type="submit"');
-
 // Get the <span> element that closes the modal
 var span = $(".close");
 
 // When the user clicks on <span> (x), close the modal
 span.on("click", function () {
-    modal.css("display", "none");
+    $("#myModal").css("display", "none");
 })
 
 // When the user clicks anywhere outside of the modal, close it
-$(window).on("click", function (event) {
-    var modal = $("#myModal");
-    if (event.target == modal) {
-        modal.css("display", "none");
+var theModal = document.getElementById("myModal");
+window.onclick = function (event) {
+    if (event.target == theModal) {
+        console.log(event.target)
+        console.log(theModal)
+        theModal.style.display = "none";
     }
-})
+}
