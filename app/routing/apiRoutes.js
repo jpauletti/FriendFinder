@@ -20,10 +20,6 @@ module.exports = function (app) {
             for (var j = 0; j < friends[i].scores.length; j++) {
                 // loop through each score to compare newFriend & friends[i]
                 var newNumber = Math.abs(parseInt(newFriend.scores[j]) - parseInt(friends[i].scores[j]));
-                // console.log("newFriend score: " + newFriend.scores[j]);
-                // console.log("friend " + i + " score: " + friends[i].scores[j]);
-
-                // console.log(newNumber);
 
                 // add difference to totalDifference
                 totalDifference += newNumber;
@@ -38,7 +34,6 @@ module.exports = function (app) {
         var closestIndex = friendDifference.indexOf(lowestNumber);
         // set closest match
         var closestMatch = friends[closestIndex];
-        console.log(closestMatch);
 
         // send back the closestMatch and its info
         res.json(closestMatch);

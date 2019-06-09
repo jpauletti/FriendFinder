@@ -1,4 +1,4 @@
-// bootstrap validation & post request
+// bootstrap form validation & post request
 (function () {
     'use strict';
     window.addEventListener('load', function () {
